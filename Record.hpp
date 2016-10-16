@@ -19,16 +19,17 @@
 class Record {
 private:
 public:
-    Record(Patient* pDude, Institution* whoWroteMe) : pPatient(pDude), pIssue(whoWroteMe) {
+    Record(Patient* pDude, Institution* whoWroteMe, std::string whatAmI) : pPatient(pDude), pIssue(whoWroteMe), mCategory(whatAmI) {
         _date_of_issue = *(localtime(time(0)));
     };
-    Record(Patient* pDude, Institution* whoWroteMe, date_type whenTho) : pPatient(pDude), pIssue(whoWroteMe), _date_of_issue(whenTho) {};
+    Record(Patient* pDude, Institution* whoWroteMe, date_type whenTho, std::string whatAmI) : pPatient(pDude), pIssue(whoWroteMe), _date_of_issue(whenTho), mCategory(whatAmI) {};
     virtual ~Record();
 protected:
     Patient* pPatient;
     Institution* pIssue;
     date_type _date_of_issue;
     std::string mCategory;
+        // can take values "prescription", "disease", "birth", "allergy", "surgery", "labresult", "hospitalization"
 };
 
 class RecordList final {

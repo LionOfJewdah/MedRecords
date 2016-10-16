@@ -13,6 +13,7 @@ enum class sex : bool { MALE = false, FEMALE = true };
 
 #include "Person.hpp"
 #include "HealthCareProvider.hpp"
+#include "InsuranceProvider.hpp"
 // #include <vector>
 #include <set>
 #include <ctime> // time.h
@@ -29,15 +30,20 @@ private:
     // HealthCareProvider* primaryCarePhysician;
     std::set<HealthCareProvider*> authorizedDoctors;
     RecordList* whereMyRecordsAt;
+    InsuranceProvider* coverage; // NULL if they have no insurance
+    Institution* whereAmIAt; // NULL if not in a hospital or clinic, else points to the thing
     typedef std::set<HealthCareProvider*>::iterator guysWhoCanTreatMe;
 public:
 
     Patient(std::string name, int ID, sex gender)
         : Person(name, ID), mSex(gender) {
             mDate_of_birth = _date_of_issue = *(localtime(time(0)));
+            whereAmIAt = nullptr;
         };
     Patient(std::string name, int ID, sex gender, date_type dob)
-        : Person(name, ID), mDate_of_birth(dob), mSex(gender) {};
+        : Person(name, ID), mDate_of_birth(dob), mSex(gender) {
+            whereAmIAt = nullptr;
+        };
     ~Patient();
     sex getSex() { return mGender; }
     bool isAuthorized (HealthCareProvider* pDude) const {
@@ -52,7 +58,9 @@ public:
         int wereTheGuyThere = authorizedDoctors.erase(pDude);
         return ((bool) wereTheGuyThere);
     } // true if was removed, false if wasn't found
-
+    InsuranceProvider* whosCoveringMe() const {
+        return coverage;
+    }
 protected:
 };
 

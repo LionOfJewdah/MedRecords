@@ -14,7 +14,10 @@
 class Institution {
 private:
 public:
-    Institution();
+    Institution(std::string name, int ID) {
+        mName = name;
+        mInstID = ID;
+    }
     virtual ~Institution();
     std::string getName() { return mName; }
     int getID() { return mInstID; }
