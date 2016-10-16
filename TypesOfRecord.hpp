@@ -12,8 +12,12 @@
 #include "Record.hpp"
 #include "Hospital.hpp"
 
+typedef HealthCareProvider HCP;
+
 class birthRecord : public Record {
-    birthRecord();
+    birthRecord(Patient* pDude, Doctor* whoBirthedMeh) : Record(pDude, whoBirthedMeh, BIRTH) {
+        if (pDude) this->setIssueDate(pDude->getDOB());
+    }
     ~birthRecord();
 };
 
@@ -22,23 +26,32 @@ private:
     date_type hospDate;
     date_type releaseDate;
 public:
-    hospitalizationRecord();
+    hospitalizationRecord(Patient* pPatient, HCP* pCaregiver, date_type in_date, date_type out_date = *localtime(time(0)) :  Record(pPatient, pCaregiver, out_date, HOSPITALIZATION)
+    {
+        hospDate = in_date;
+        releaseDate = out_date;
+    }
+    // hospitalizationRecord(Patient* pPatient, HCP* pCaregiver, date_type in_date, date_type out_date = *localtime(time(0)) :  Record(pPatient, pCaregiver, out_date, HOSPITALIZATION)
+    // {
+    //     hospDate = in_date;
+    //     releaseDate = out_date;
+    // }
     ~hospitalizationRecord();
+    // void INeedToMakeThisClassAbstract() {}; // jk lol
 };
 
 class prescriptionRecord : public Record {
 protected:
     std::string _name_of_pharmacy;
 public:
-    prescriptionRecord(Patient* pDude, Institution* issuer, std::string whoFillingMeMang) : Record(pDude, issuer, "prescription") {
+    prescriptionRecord(Patient* pDude, Institution* issuer, std::string whoFillingMeMang) : Record(pDude, issuer, PRESCRIPTION) {
         _name_of_pharmacy = whoFillingMeMang;
     };
-    prescriptionRecord(Patient* pDude, Institution* issuer, date_type when, std::string whoFillingMeMang) : Record(pDude, issuer, when, "prescription") {
+    prescriptionRecord(Patient* pDude, Institution* issuer, date_type when, std::string whoFillingMeMang) : Record(pDude, issuer, when, PRESCRIPTION) {
         _name_of_pharmacy = whoFillingMeMang;
     };
     ~prescriptionRecord();
-private:
-    //
+    // void INeedToMakeThisClassAbstract() {}; // jk lol
 };
 
 class diseaseRecord : public Record {
@@ -52,6 +65,7 @@ public:
 
     };
     ~diseaseRecord();
+    // void INeedToMakeThisClassAbstract() {}; // jk lol
 };
 
 class surgeryRecord : public Record {
@@ -66,7 +80,7 @@ public:
 
         }
     ~surgeryRecord();
-
+    // void INeedToMakeThisClassAbstract() {}; // jk lol
 };
 
 class allergyRecord : public Record {
@@ -77,6 +91,7 @@ protected:
 public:
     allergyRecord(Patient* pDude, Analyst* issuer, std::string what_al) : Record(pDude, issuer, "allergy"), allergies(what_al) {};
     ~allergyRecord();
+    // void INeedToMakeThisClassAbstract() {}; // jk lol
 };
 
 /*
@@ -91,6 +106,7 @@ protected:
 public:
     labTest();
     ~labTest();
+    // void INeedToMakeThisClassAbstract() {}; // jk lol
 };
 */
 

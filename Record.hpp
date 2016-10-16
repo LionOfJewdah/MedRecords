@@ -11,8 +11,11 @@
 
 #include <vector>
 #include "Patient.hpp"
-//#include "HealthCareProvider.hpp"
+//#include "HealthCareProvider.hpp" // included in Doctor
 #include "Doctor.hpp"
+#include "Surgeon.hpp"
+#include "EMT.hpp"
+//#include "Analyst.hpp"
 #include <ctime>
 #include "Institution.hpp"
 #include <algorithm> // std::sort()
@@ -20,24 +23,38 @@
 class Record {
 private:
 public:
-    Record(Patient* pDude, HealthCareProvider* whoWroteMe, std::string whatAmI) : pPatient(pDude), pIssuer(whoWroteMe), mCategory(whatAmI) {
+    // Record(Patient* pDude, HealthCareProvider* whoWroteMe/*, std::string whatAmI*/) :
+    // pPatient(pDude), pIssuer(whoWroteMe)/*, mCategory(whatAmI) */
+    Record(Patient* pDude, HealthCareProvider* whoWroteMe, recordClass whatAmI)
+    : pPatient(pDude), pIssuer(whoWroteMe), mCategory(whatAmI)
+    {
         _date_of_issue = *(localtime(time(0)));
         if (whoWroteMe) pIssue_Inst = whoWroteMe->getInstitution();
         else pIssue_Inst = 0;
         // safety code against segmentation faults
     };
-    Record(Patient* pDude, HealthCareProvider* whoWroteMe, date_type whenTho, std::string whatAmI) : pPatient(pDude), pIssuer(whoWroteMe), _date_of_issue(whenTho), mCategory(whatAmI) {
+    // Record(Patient* pDude, HealthCareProvider* whoWroteMe, date_type whenTho/*, std::string whatAmI*/) :
+    // pPatient(pDude), pIssuer(whoWroteMe), _date_of_issue(whenTho)/*, mCategory(whatAmI) */
+    Record(Patient* pDude, HealthCareProvider* whoWroteMe, date_type whenTho, recordClass whatAmI) :
+    pPatient(pDude), pIssuer(whoWroteMe), _date_of_issue(whenTho), mCategory(whatAmI)
+    {
         if (whoWroteMe) pIssue_Inst = whoWroteMe->getInstitution();
         else pIssue_Inst = 0;
     };
     virtual ~Record();
+    //virtual void INeedToMakeThisClassAbstract() = 0; // there are no just "records"
 protected:
+    void setIssueDate(date_type d) {
+        _date_of_issue = d;
+    } // only derived classes can access this
     Patient* pPatient;
     HealthCareProvider* pIssuer;
     Institution* pIssue_Inst;
     date_type _date_of_issue;
-    std::string mCategory;
-        // can take values "prescription", "disease", "birth", "allergy", "surgery", "labresult", "hospitalization"
+    // std::string mCategory;
+    //     // can take values "prescription", "disease", "birth", "allergy", "surgery", "labresult", "hospitalization"
+    recordClass mCategory;
+    //from HealthCareProvider.hpp: `enum class recordClass : int { BIRTH = 0, PHYSICAL = 1, ALLERGY, HOSPITALIZATION, PRESCRIPTION, SURGERY, DISEASE };`
 };
 
 class RecordList final {

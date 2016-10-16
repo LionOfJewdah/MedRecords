@@ -20,6 +20,13 @@ public:
     virtual std::string typeOfProvider() const {
         return "Doctor";
     }
+    virtual bool hasAccessTo(Patient* pPatient) {
+        return (pPatient->isAuthorized(this));
+    } // overloaded in Surgeon, but not in Oncologist
+    virtual bool canAccessTheseRecords(recordClass rc) {
+        // Doctor can access: birthRecord, 
+    }
+    bool hasAccessTo(Patient* pPatient, recordClass rc) = 0;
 protected:
 
 };

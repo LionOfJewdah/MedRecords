@@ -9,6 +9,8 @@
 #ifndef HealthCareProvider_hpp
 #define HealthCareProvider_hpp
 
+enum class recordClass : int { BIRTH = 0, PHYSICAL = 1, ALLERGY, HOSPITALIZATION, PRESCRIPTION, SURGERY, DISEASE };
+
 #include "Institution.hpp"
 #include "Person.hpp"
 
@@ -20,7 +22,8 @@ public:
     HealthCareProvider();
     virtual ~HealthCareProvider();
     virtual bool hasAccessTo(Patient* pPatient) = 0;
-    virtual bool hasAccessTo(Patient* pPatient) = 0;
+    virtual bool canAccessTheseRecords(recordClass rc) = 0;
+    virtual bool hasAccessTo(Patient* pPatient, recordClass rc) = 0;
     Institution* getInstitution() const {
         return whereTheyWork;
     }

@@ -23,6 +23,10 @@ public:
             return true; // EMT has access if and only if the patient is at that hospital/provider institution at that time
         return false; //
     }
+    bool canAccessTheseRecords(recordClass rc) { return true; }
+    bool hasAccessTo(Patient* pPatient, recordClass rc) {
+        return hasAccessTo(pPatient);
+    }
     std::string typeOfProvider() const {
         return "Emergency Room Doctor";
     }

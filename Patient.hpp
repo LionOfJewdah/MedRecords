@@ -34,7 +34,6 @@ private:
     Institution* location; // NULL if not in a hospital or clinic, else points to the thing
     typedef std::set<HealthCareProvider*>::iterator guysWhoCanTreatMe;
 public:
-
     Patient(std::string name, int ID, sex gender)
         : Person(name, ID), mSex(gender) {
             mDate_of_birth = _date_of_issue = *(localtime(time(0)));
@@ -66,6 +65,9 @@ public:
     }
     Institution* whereAmIAt() const {
         return location;
+    }
+    date_type getDOB() const {
+        return mDate_of_birth;
     }
 protected:
 };
