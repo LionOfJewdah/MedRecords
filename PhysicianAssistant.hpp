@@ -14,14 +14,25 @@
 class PhysicianAssistant : public HealthCareProvider {
 private:
 public:
-    PhysicianAssistant();
+    PhysicianAssistant(std::string Name, int ID, Institution* inst = 0)
+    : HealthCareProvider(Name, ID, inst)
+    {
+
+    };
     ~PhysicianAssistant();
     bool hasAccessTo(Patient* pPatient) {
         // return true if they're currently there, for physicals
         return false;
     }
-    bool canAccessTheseRecords(recordClass rc) = 0;
-    bool hasAccessTo(Patient* pPatient, recordClass rc) = 0;
+    bool canAccessTheseRecords(recordClass rc) {
+        return (rc == PHYSICAL || rc == ALLERGY || rc == SURGERY || rc == PRESCRIPTION);
+    }
+    bool hasAccessTo(Patient* pPatient, recordClass rc) {
+        return (hasAccessTo(pPatient) && canAccessTheseRecords(rc));
+    }
+    std::string typeOfProvider() const {
+        return "Physician\'s Assistant";
+    }
 protected:
 
 };

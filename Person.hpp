@@ -4,7 +4,7 @@
 //
 //  Created by David Paul Silverstone on Sat, Oct 15th, 2016.
 //
-//  Abstract base class of patient and "doctor" classes
+//  Abstract base class of Patient and HealthCareProvider classes
 
 #ifndef Person_hpp
 #define Person_hpp
@@ -16,8 +16,8 @@ private:
 public:
     Person(std::string name, int ID) : mName(name), mID(ID) {};
     virtual ~Person() {};
-    std::string getName() { return mName; }
-    virtual int getID() { return mID; }
+    std::string getName() const { return mName; }
+    virtual int getID() const { return mID; }
 
 protected:
     std::string mName;

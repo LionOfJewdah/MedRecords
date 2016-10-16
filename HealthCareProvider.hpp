@@ -9,18 +9,21 @@
 #ifndef HealthCareProvider_hpp
 #define HealthCareProvider_hpp
 
-enum class recordClass : int { BIRTH = 0, PHYSICAL = 1, ALLERGY, HOSPITALIZATION, PRESCRIPTION, SURGERY, DISEASE };
-
 #include "Institution.hpp"
 #include "Person.hpp"
+
+enum class recordClass : int { BIRTH = 0, PHYSICAL = 1, ALLERGY, HOSPITALIZATION, PRESCRIPTION, SURGERY, DISEASE };
 
 class Patient; // forward declaration
 
 class HealthCareProvider : public Person {
 private:
 public:
-    HealthCareProvider();
-    virtual ~HealthCareProvider();
+    HealthCareProvider(std::string Name, int ID, Institution* inst = 0) : Person(Name, ID)
+    {
+        whereTheyWork = inst;
+    };
+    virtual ~HealthCareProvider() {};
     virtual bool hasAccessTo(Patient* pPatient) = 0;
     virtual bool canAccessTheseRecords(recordClass rc) = 0;
     virtual bool hasAccessTo(Patient* pPatient, recordClass rc) = 0;

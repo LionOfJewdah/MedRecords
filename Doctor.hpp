@@ -15,7 +15,11 @@
 class Doctor : public HealthCareProvider {
 private:
 public:
-    Doctor();
+    Doctor(std::string Name, int ID, Institution* inst = 0)
+    : HealthCareProvider (Name, ID, inst)
+    {
+
+    }
     virtual ~Doctor();
     virtual std::string typeOfProvider() const {
         return "Doctor";
@@ -24,9 +28,12 @@ public:
         return (pPatient->isAuthorized(this));
     } // overloaded in Surgeon, but not in Oncologist
     virtual bool canAccessTheseRecords(recordClass rc) {
-        // Doctor can access: birthRecord, 
+        // Doctor can access: birthRecord,
+        return true;
     }
-    bool hasAccessTo(Patient* pPatient, recordClass rc) = 0;
+    virtual bool hasAccessTo(Patient* pPatient, recordClass rc)  {
+        return (hasAccessTo(pPatient) && canAccessTheseRecords(rc));
+    }
 protected:
 
 };

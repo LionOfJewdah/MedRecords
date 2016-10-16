@@ -16,9 +16,12 @@ enum class sex : bool { MALE = false, FEMALE = true };
 #include "InsuranceProvider.hpp"
 // #include <vector>
 #include <set>
-#include <ctime> // time.h
+//#include <ctime> // time.h
+#include "boost/date_time/gregorian/gregorian_types.hpp"
 
-typedef struct tm date_type;
+//typedef struct tm date_type;
+typedef boost::gregorian::date date_type;
+using boost::gregorian::from_undelimited_string;
 
 class RecordList; // forward declaration
 
@@ -36,7 +39,7 @@ private:
 public:
     Patient(std::string name, int ID, sex gender)
         : Person(name, ID), mSex(gender) {
-            mDate_of_birth = _date_of_issue = *(localtime(time(0)));
+            mDate_of_birth = day_clock(local_day());
             whereAmIAt = nullptr;
         };
     Patient(std::string name, int ID, sex gender, date_type dob)
