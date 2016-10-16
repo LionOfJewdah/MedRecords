@@ -4,7 +4,7 @@
 //
 //  Created by David Paul Silverstone on Sun, Oct 16th, 2016.
 //
-//
+//  We didn't have time to implement this :(
 
 #ifndef dataBaseSystem_hpp
 #define dataBaseSystem_hpp

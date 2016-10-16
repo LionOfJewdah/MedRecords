@@ -19,9 +19,9 @@ public:
     std::string getName() const { return mName; }
     virtual int getID() const { return mID; }
     //virtual void printInfo() const = 0;
-    virtual void printInfo() const {
-        std::cout << "Person: " << mName << "\tID: " << mID;
-    }
+    // virtual void printInfo() const {
+    //     std::cout << "Person: " << mName << "\tID: " << mID;
+    // }
 
 protected:
     std::string mName;

@@ -8,6 +8,7 @@
 #include "Hospital.hpp"
 #include "PhysicianAssistant.hpp"
 #include "InsuranceProvider.hpp"
+#include "Doctor.hpp"
 //#include <cassert>
 using boost::gregorian::from_undelimited_string;
 //using boost::gregorian::local_day;

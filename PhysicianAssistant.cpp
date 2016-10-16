@@ -1,8 +1,16 @@
 #include "PhysicianAssistant.hpp"
 #include "TypesOfRecord.hpp"
+#include "Patient.hpp"
 
+bool PhysicianAssistant::hasAccessTo(Patient* pPatient) {
+    if (!pPatient) return false;
+    if (!supervisor) return false;
+    if (pPatient->whereAmIAt() != this->getInstitution()) return false;
+    if (pPatient->isAuthorized(supervisor)) return true;
+    return false;
+}
 
-bool PhysicianAssistant::addRecord(Patient* pPatient, recordClass rc, std::string string1 = "", date_type Dt = day_clock::local_day(), std::string string2 = "") final
+bool PhysicianAssistant::addRecord(Patient* pPatient, recordClass rc, std::string string1 = "", date_type Dt = day_clock::local_day(), std::string string2 = "")
 {
     if (!pPatient) return false;
     if (!hasAccessTo(pPatient, rc)) return false;

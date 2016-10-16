@@ -13,6 +13,9 @@
 #include "Patient.hpp"
 #include "HealthCareProvider.hpp"
 #include "boost/date_time/gregorian/gregorian.hpp"
+using boost::gregorian::day_clock;
+typedef boost::gregorian::date date_type;
+using boost::gregorian::from_undelimited_string;
 #include "Institution.hpp"
 #include <algorithm> // std::sort()
 //#include "Doctor.hpp"
@@ -55,7 +58,7 @@ public:
         else pIssue_Inst = 0;
     };
     */
-    virtual ~Record();
+    virtual ~Record() = default;
     date_type getDateIssued() const {
         return _date_of_issue;
     }
@@ -73,10 +76,10 @@ bool pRecordLess(const Record* lhs, const Record* rhs) {
 }
 
 typedef std::vector<Record*>::iterator vRit;
-bool itRecordLess(const vRit lhs, const vRit rhs) {
-    //return ((*lhs)->getDateIssued() < (*rhs)->getDateIssued());
-    return (pRecordLess(*lhs, *rhs));
-}
+// bool itRecordLess(const vRit lhs, const vRit rhs) {
+//     //return ((*lhs)->getDateIssued() < (*rhs)->getDateIssued());
+//     return (pRecordLess(*lhs, *rhs));
+// }
 
 class RecordList final {
 private:
@@ -87,12 +90,12 @@ public:
     RecordList(Patient* pOwner) {
         owner = pOwner;
     };
-    // ~RecordList() {
-    //     while (!patientRecords.empty()) {
-    //         if (patientRecords.back()) delete patientRecords.back();
-    //         patientRecords.pop_back();
-    //     } // dynamic memory management
-    // }
+    ~RecordList() {
+        while (!patientRecords.empty()) {
+            if (patientRecords.back()) delete patientRecords.back();
+            patientRecords.pop_back();
+        } // dynamic memory management
+    }
     // need to add add, which calls std::sort()
 
     void setOwner(Patient* p) {
@@ -102,10 +105,12 @@ public:
     void addRecord(Record* record) {
         patientRecords.push_back(record);
         //std::sort(patientRecords);
+        if (record->getDateIssued() != day_clock::local_day())
+            sort(); // inefficient to sort every time; only need to on non-recent documents
     }
 
     void sort() {
-        std::sort(patientRecords.begin(), patientRecords.end(), &itRecordLess);
+        std::sort(patientRecords.begin(), patientRecords.end(), &pRecordLess);
     }
     // rarely needs to be called because records are usually added day of
 };

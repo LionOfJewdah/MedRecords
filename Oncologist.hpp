@@ -20,7 +20,7 @@ public:
     {
 
     }
-    ~Oncologist();
+    ~Oncologist() = default;
     std::string typeOfProvider() const final {
         return "Oncologist";
     }

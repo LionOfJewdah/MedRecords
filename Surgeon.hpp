@@ -27,12 +27,13 @@ public:
     std::string typeOfProvider() const final {
         return "Surgeon";
     }
-    bool hasAccessTo(Patient* pPatient) final {
-        if (!pPatient) return false;
-        if (pPatient->whereAmIAt() == this->getDivision()) return true;
-        // given more time we could make it so the cardiologist could only access patients in the cardio division of their hospital, etc.
-        return false;
-    }
+    bool hasAccessTo(Patient* pPatient) final;
+    // {
+    //     if (!pPatient) return false;
+    //     if (pPatient->whereAmIAt() == this->getDivision()) return true;
+    //     // given more time we could make it so the cardiologist could only access patients in the cardio division of their hospital, etc.
+    //     return false;
+    // }
     bool canAccessTheseRecords(recordClass rc) final {
         return true;
     }

@@ -58,9 +58,7 @@ public:
             coverage = dudeOverchargingYou;
     };
     */
-    ~Patient() {
-        //delete whereMyRecordsAt;
-    }
+    ~Patient(); // in implementation file
 
     sex getSex() const { return mGender; }
 

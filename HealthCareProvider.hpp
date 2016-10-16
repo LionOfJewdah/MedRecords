@@ -11,6 +11,10 @@
 
 #include "Institution.hpp"
 #include "Person.hpp"
+#include "boost/date_time/gregorian/gregorian.hpp"
+using boost::gregorian::day_clock;
+typedef boost::gregorian::date date_type;
+using boost::gregorian::from_undelimited_string;
 
 enum class recordClass : int { BIRTH = 0, PHYSICAL = 1, ALLERGY, HOSPITALIZATION, PRESCRIPTION, SURGERY, DISEASE };
 //enum class healthCareProviderModel : int { HCP = 0, NURSE = 1, PA = 2, DOCTOR = 3, SURGEON = 4, ONCOLOGIST = 5, EMT = 6};
@@ -24,7 +28,7 @@ public:
     {
         whereTheyWork = inst;
     };
-    virtual ~HealthCareProvider() {};
+    virtual ~HealthCareProvider() = default;
     // virtual bool hasAccessTo(Patient* pPatient) = 0;
     // virtual bool canAccessTheseRecords(recordClass rc) = 0;
     // virtual bool hasAccessTo(Patient* pPatient, recordClass rc) = 0;
@@ -80,9 +84,9 @@ public:
         // do stuff if you can
         return false;
     }
-    virtual void printInfo() const {
-        std::cout << "Health care provider: " << mName << '\t' << "Institution: " << whereTheyWork->getName();
-    }
+    // virtual void printInfo() const {
+    //     std::cout << "Health care provider: " << mName << '\t' << "Institution: " << whereTheyWork->getName();
+    // }
 
 protected:
     Institution* whereTheyWork;

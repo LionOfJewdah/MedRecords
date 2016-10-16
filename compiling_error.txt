@@ -1,0 +1,19 @@
+In file included from /home/d_silver/MedRecords/HealthCareProvider.hpp:12:0:
+/home/d_silver/MedRecords/Institution.hpp:21:30: warning: defaulted and deleted functions only available with -std=c++11 or -std=gnu++11
+     virtual ~Institution() = default;
+                              ^
+/home/d_silver/MedRecords/HealthCareProvider.hpp:15:1: warning: scoped enums only available with -std=c++11 or -std=gnu++11
+ enum class recordClass : int { BIRTH = 0, PHYSICAL = 1, ALLERGY, HOSPITALIZATION, PRESCRIPTION, SURGERY, DISEASE };
+ ^
+/home/d_silver/MedRecords/HealthCareProvider.hpp:15:26: warning: scoped enums only available with -std=c++11 or -std=gnu++11
+ enum class recordClass : int { BIRTH = 0, PHYSICAL = 1, ALLERGY, HOSPITALIZATION, PRESCRIPTION, SURGERY, DISEASE };
+                          ^
+/home/d_silver/MedRecords/HealthCareProvider.hpp:40:84: error: ‘date_type’ has not been declared
+     virtual bool addRecord(Patient* pPatient, recordClass rc, std::string string1, date_type Dt, std::string string2) {
+                                                                                    ^
+/home/d_silver/MedRecords/HealthCareProvider.hpp:79:87: error: ‘date_type’ has not been declared
+     virtual bool addRecord(Patient* pPatient, recordClass rc, std::string stuff = "", date_type Dt = day_clock::local_day()) {
+                                                                                       ^
+/home/d_silver/MedRecords/HealthCareProvider.hpp:79:102: error: ‘day_clock’ has not been declared
+     virtual bool addRecord(Patient* pPatient, recordClass rc, std::string stuff = "", date_type Dt = day_clock::local_day()) {
+                                                                                                      ^

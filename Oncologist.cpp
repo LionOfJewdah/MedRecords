@@ -1,7 +1,8 @@
 #include "Oncologist.hpp"
 #include "TypesOfRecord.hpp"
+#include "Patient.hpp"
 
-bool Oncologist::addRecord(Patient* pPatient, recordClass rc, std::string string1 = "", date_type Dt = day_clock::local_day(), std::string string2 = "") final {
+bool Oncologist::addRecord(Patient* pPatient, recordClass rc, std::string string1 = "", date_type Dt = day_clock::local_day(), std::string string2 = "") {
     if (!pPatient) return false;
     if (!hasAccessTo(pPatient, rc)) return false;
     switch (rc) {

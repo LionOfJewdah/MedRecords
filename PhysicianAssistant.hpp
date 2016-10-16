@@ -21,14 +21,15 @@ public:
         supervisor = dr;
     };
     ~PhysicianAssistant() = default;
-    bool hasAccessTo(Patient* pPatient) {
-        // return true if they're currently there, for physicals
-        if (!pPatient) return false;
-        if (!supervisor) return false;
-        if (pPatient->whereAmIAt() != this->getInstitution()) return false;
-        if (pPatient->isAuthorized(supervisor)) return true;
-        return false;
-    }
+    bool hasAccessTo(Patient* pPatient) final;
+        // return true if they're currently there, for physicals; else false
+    // {
+    //     if (!pPatient) return false;
+    //     if (!supervisor) return false;
+    //     if (pPatient->whereAmIAt() != this->getInstitution()) return false;
+    //     if (pPatient->isAuthorized(supervisor)) return true;
+    //     return false;
+    // }
     bool canAccessTheseRecords(recordClass rc) {
         //using namespace recordClass;
         return (rc == recordClass::PHYSICAL || rc == recordClass::ALLERGY || rc == recordClass::SURGERY || rc == recordClass::PRESCRIPTION);

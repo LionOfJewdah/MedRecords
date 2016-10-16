@@ -22,13 +22,14 @@ public:
         //supervisor = dr;
     };
     ~Nurse();
-    bool hasAccessTo(Patient* pPatient) final {
-        // a little more lenient on which patients nurses can see records of than Physician's Assistant
-        // nurse can access records of patients at their division or
-        if (!pPatient) return false;
-        if (pPatient->whereAmIAt() == this->whereTheyWork) return true;
-        return false;
-    }
+    bool hasAccessTo(Patient*) final;
+    // bool hasAccessTo(Patient* pPatient) final {
+    //     // a little more lenient on which patients nurses can see records of than Physician's Assistant
+    //     // nurse can access records of patients at their division or
+    //     if (!pPatient) return false;
+    //     if (pPatient->whereAmIAt() == this->whereTheyWork) return true;
+    //     return false;
+    // }
     bool canAccessTheseRecords(recordClass rc) final {
         return (rc == recordClass::PHYSICAL || rc == recordClass::ALLERGY || rc == recordClass::SURGERY || rc == recordClass::PRESCRIPTION || rc == recordClass::HOSPITALIZATION);
     }

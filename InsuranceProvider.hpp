@@ -11,6 +11,8 @@
 
 #include "Institution.hpp"
 
+class Patient; // forward declaration
+
 class InsuranceProvider : public Institution {
 private:
 public:

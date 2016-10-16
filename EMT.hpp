@@ -17,12 +17,13 @@ private:
 public:
     EMT();
     ~EMT();
-    bool hasAccessTo(Patient* pPatient) {
-        if (!pPatient) return false;
-        if (pPatient->whereAmIAt() == this->getInstitution())
-            return true; // EMT has access if and only if the patient is at that hospital/provider institution at that time
-        return false; //
-    }
+    bool hasAccessTo(Patient*);
+    // bool hasAccessTo(Patient* pPatient) {
+    //     if (!pPatient) return false;
+    //     if (pPatient->whereAmIAt() == this->getInstitution())
+    //         return true; // EMT has access if and only if the patient is at that hospital/provider institution at that time
+    //     return false; //
+    // }
     bool canAccessTheseRecords(recordClass rc) { return true; }
     bool hasAccessTo(Patient* pPatient, recordClass rc) {
         return hasAccessTo(pPatient);
