@@ -13,9 +13,13 @@
 #include "Hospital.hpp"
 //using boost::date_time::day_clock;
 //using boost::date_time::local_day;
-// #include "Doctor.hpp"
-// #include "Surgeon.hpp"
-// #include ""
+#include "Doctor.hpp"
+#include "Surgeon.hpp"
+#include "EMT.hpp"
+#include "Nurse.hpp"
+#include "Oncologist.hpp"
+#include "PhysicianAssistant.hpp"
+//#include "InsuranceProvider.hpp"
 
 typedef HealthCareProvider HCP;
 

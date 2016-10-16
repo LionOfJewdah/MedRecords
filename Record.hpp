@@ -74,7 +74,8 @@ bool pRecordLess(const Record* lhs, const Record* rhs) {
 
 typedef std::vector<Record*>::iterator vRit;
 bool itRecordLess(const vRit lhs, const vRit rhs) {
-    return ((*lhs)->getDateIssued() < (*rhs)->getDateIssued());
+    //return ((*lhs)->getDateIssued() < (*rhs)->getDateIssued());
+    return (pRecordLess(*lhs, *rhs));
 }
 
 class RecordList final {
@@ -104,7 +105,7 @@ public:
     }
 
     void sort() {
-        std::sort(patientRecords.begin(), patientRecords.end(), &itRecordLess());
+        std::sort(patientRecords.begin(), patientRecords.end(), &itRecordLess);
     }
     // rarely needs to be called because records are usually added day of
 };

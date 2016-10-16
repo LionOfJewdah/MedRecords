@@ -13,7 +13,7 @@
 #include "Person.hpp"
 
 enum class recordClass : int { BIRTH = 0, PHYSICAL = 1, ALLERGY, HOSPITALIZATION, PRESCRIPTION, SURGERY, DISEASE };
-enum class healthCareProviderModel : int { HCP = 0, NURSE = 1, PA = 2, DOCTOR = 3, SURGEON = 4, ONCOLOGIST = 5, EMT = 6};
+//enum class healthCareProviderModel : int { HCP = 0, NURSE = 1, PA = 2, DOCTOR = 3, SURGEON = 4, ONCOLOGIST = 5, EMT = 6};
 
 class Patient; // forward declaration
 
