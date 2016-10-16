@@ -19,7 +19,10 @@
 class Record {
 private:
 public:
-    Record(Patient* pDude, Institution* whoWroteMe) : pPatient(pDude), pIssue(whoWroteMe) {};
+    Record(Patient* pDude, Institution* whoWroteMe) : pPatient(pDude), pIssue(whoWroteMe) {
+        _date_of_issue = *(localtime(time(0)));
+    };
+    Record(Patient* pDude, Institution* whoWroteMe, date_type whenTho) : pPatient(pDude), pIssue(whoWroteMe), _date_of_issue(whenTho) {};
     virtual ~Record();
 protected:
     Patient* pPatient;

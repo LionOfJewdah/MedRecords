@@ -31,7 +31,12 @@ private:
     RecordList* whereMyRecordsAt;
     typedef std::set<HealthCareProvider*>::iterator guysWhoCanTreatMe;
 public:
-    Patient(std::string name, int ID, date_type dob, sex gender)
+
+    Patient(std::string name, int ID, sex gender)
+        : Person(name, ID), mSex(gender) {
+            mDate_of_birth = _date_of_issue = *(localtime(time(0)));
+        };
+    Patient(std::string name, int ID, sex gender, date_type dob)
         : Person(name, ID), mDate_of_birth(dob), mSex(gender) {};
     ~Patient();
     sex getSex() { return mGender; }
@@ -47,7 +52,7 @@ public:
         int wereTheGuyThere = authorizedDoctors.erase(pDude);
         return ((bool) wereTheGuyThere);
     } // true if was removed, false if wasn't found
-    
+
 protected:
 };
 
