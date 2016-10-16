@@ -33,6 +33,7 @@ public:
     virtual std::string typeOfProvider() const {
         return "Health care provider";
     }
+    virtual void addRecord(Patient* pPatient, Record /*&& const */ rcd) = 0;
 protected:
     Institution* whereTheyWork;
     // Institution & whereTheyWork;

@@ -29,7 +29,7 @@ public:
         return true;
     }
     bool hasAccessTo(Patient* pPatient, recordClass rc) final {
-        return hasAccessTo(pPatient); // because can access any type of record
+        return Doctor::hasAccessTo(pPatient); // because can access any type of record
     }
 protected:
 

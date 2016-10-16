@@ -14,8 +14,8 @@
 class Hospital : public Institution {
 private:
 public:
-    Hospital();
-    virtual ~Hospital();
+    Hospital(std::string Name, int hospID) : Institution(Name, hospID) {};
+    virtual ~Hospital()  = default;
 protected:
 
 };

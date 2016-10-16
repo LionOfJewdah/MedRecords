@@ -11,43 +11,54 @@
 
 enum class sex : bool { MALE = false, FEMALE = true };
 
+#include "boost/date_time/gregorian/gregorian.hpp"
+using boost::gregorian::day_clock;
+typedef boost::gregorian::date date_type;
+using boost::gregorian::from_undelimited_string;
 #include "Person.hpp"
 #include "HealthCareProvider.hpp"
-#include "InsuranceProvider.hpp"
+//#include "InsuranceProvider.hpp"
 // #include <vector>
 #include <set>
 //#include <ctime> // time.h
-#include "boost/date_time/gregorian/gregorian_types.hpp"
-
 //typedef struct tm date_type;
-typedef boost::gregorian::date date_type;
-using boost::gregorian::from_undelimited_string;
 
 class RecordList; // forward declaration
+class InsuranceProvider;
 
 class Patient final : public Person {
 private:
-    sex mGender;
     date_type mDate_of_birth;
+    sex mGender;
     // std::vector<Person*> mNextOfKin;
     // HealthCareProvider* primaryCarePhysician;
     std::set<HealthCareProvider*> authorizedDoctors;
-    RecordList* whereMyRecordsAt;
+    RecordList* whereMyRecordsAt; // fuck no use a map or vector or smthg smh
     InsuranceProvider* coverage; // NULL if they have no insurance
     Institution* location; // NULL if not in a hospital or clinic, else points to the thing
     typedef std::set<HealthCareProvider*>::iterator guysWhoCanTreatMe;
 
 public:
     Patient(std::string name, int ID, sex gender)
-        : Person(name, ID), mSex(gender) {
-            mDate_of_birth = day_clock(local_day());
-            whereAmIAt = nullptr;
-        };
+        : Person(name, ID), mGender(gender) {
+            //mDate_of_birth = day_clock(local_day());
+            mDate_of_birth = day_clock::local_day();
+            location = nullptr;
+            coverage = nullptr;
+    };
     Patient(std::string name, int ID, sex gender, date_type dob)
-        : Person(name, ID), mDate_of_birth(dob), mSex(gender) {
-            whereAmIAt = nullptr;
-        };
-    ~Patient();
+        : Person(name, ID), mDate_of_birth(dob), mGender(gender) {
+            location = nullptr;
+            coverage = nullptr;
+    };
+    Patient(std::string name, int ID, sex gender, date_type dob, InsuranceProvider* dudeOverchargingYou)
+        : Person(name, ID), mDate_of_birth(dob), mGender(gender) {
+            location = nullptr;
+            coverage = dudeOverchargingYou;
+    };
+    ~Patient() {
+        //delete whereMyRecordsAt;
+    }
 
     sex getSex() const { return mGender; }
 
@@ -57,7 +68,7 @@ public:
     } // true if found, else false
 
     bool authorize (HealthCareProvider* pDude) {
-        pair<guysWhoCanTreatMe, bool> thing = authorizedDoctors.insert(pDude);
+        std::pair<guysWhoCanTreatMe, bool> thing = authorizedDoctors.insert(pDude);
         return thing.second;
     } // false if pDude was already authorized, true if newly authorized
 
@@ -81,7 +92,7 @@ public:
     date_type getDOB() const {
         return mDate_of_birth;
     }
-    
+
 protected:
 };
 

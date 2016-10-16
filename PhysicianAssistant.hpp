@@ -19,13 +19,14 @@ public:
     {
 
     };
-    ~PhysicianAssistant();
+    ~PhysicianAssistant() = default;
     bool hasAccessTo(Patient* pPatient) {
         // return true if they're currently there, for physicals
         return false;
     }
     bool canAccessTheseRecords(recordClass rc) {
-        return (rc == PHYSICAL || rc == ALLERGY || rc == SURGERY || rc == PRESCRIPTION);
+        //using namespace recordClass;
+        return (rc == recordClass::PHYSICAL || rc == recordClass::ALLERGY || rc == recordClass::SURGERY || rc == recordClass::PRESCRIPTION);
     }
     bool hasAccessTo(Patient* pPatient, recordClass rc) {
         return (hasAccessTo(pPatient) && canAccessTheseRecords(rc));

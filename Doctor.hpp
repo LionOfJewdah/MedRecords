@@ -20,7 +20,7 @@ public:
     {
 
     }
-    virtual ~Doctor();
+    virtual ~Doctor() = default;
     virtual std::string typeOfProvider() const {
         return "Doctor";
     }

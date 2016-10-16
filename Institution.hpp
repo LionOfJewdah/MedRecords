@@ -18,7 +18,7 @@ public:
         mName = name;
         mInstID = ID;
     }
-    virtual ~Institution();
+    virtual ~Institution() = default;
     std::string getName() { return mName; }
     int getID() { return mInstID; }
 protected:

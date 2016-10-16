@@ -15,7 +15,7 @@ class InsuranceProvider : public Institution {
 private:
 public:
     InsuranceProvider(std::string name, int ID) : Institution(name, ID) {};
-    ~InsuranceProvider();
+    ~InsuranceProvider() = default;
     bool hasAccessTo(Patient* p) {
         if (!p) return false;
         if (p->whosCoveringMe() == this) return true;
