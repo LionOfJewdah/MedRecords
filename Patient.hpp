@@ -15,16 +15,24 @@ enum class sex : bool { MALE = false, FEMALE = true };
 #include "HealthCareProvider.hpp"
 // #include <vector>
 #include <set>
+#include <ctime> // time.h
+
+typedef struct tm date_type;
+
+class RecordList; // forward declaration
 
 class Patient final : public Person {
 private:
     sex mGender;
+    date_type mDate_of_birth;
     // std::vector<Person*> mNextOfKin;
     // HealthCareProvider* primaryCarePhysician;
     std::set<HealthCareProvider*> authorizedDoctors;
+    RecordList* whereMyRecordsAt;
     typedef std::set<HealthCareProvider*>::iterator guysWhoCanTreatMe;
 public:
-    Patient();
+    Patient(std::string name, int ID, date_type dob, sex gender)
+        : Person(name, ID), mDate_of_birth(dob), mSex(gender) {};
     ~Patient();
     sex getSex() { return mGender; }
     bool isAuthorized (HealthCareProvider* pDude) const {
@@ -39,6 +47,7 @@ public:
         int wereTheGuyThere = authorizedDoctors.erase(pDude);
         return ((bool) wereTheGuyThere);
     } // true if was removed, false if wasn't found
+    
 protected:
 };
 

@@ -10,15 +10,11 @@
 #define Person_hpp
 
 #include <string>
-#include <ctime> // time.h
-
-typedef struct tm date_type;
 
 class Person {
 private:
 public:
-    Person(std::string name, int ID, date_type dob, sex gender) : mDate_of_birth(dob), mSex(gender), mID(ID), mName(name) {
-    }
+    Person(std::string name, int ID) : mID(ID), mName(name) {};
     virtual ~Person() {};
     std::string getName() { return mName; }
     virtual int getID() { return mID; }
@@ -26,8 +22,6 @@ public:
 protected:
     std::string mName;
     int mID;// _social_security;
-    date_type mDate_of_birth;
-    
     //place_type mPlace_of_birth; // if we want
 };
 

@@ -9,7 +9,7 @@
 #ifndef Lab_hpp
 #define Lab_hpp
 
-#include "Hospital.hpp"
+#include "Institution.hpp"
 
 class Lab : public Institution {
 private:

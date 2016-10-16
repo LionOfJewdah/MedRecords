@@ -19,18 +19,23 @@
 class Record {
 private:
 public:
-    Record();
+    Record(Patient* pDude, Institution* whoWroteMe) : pPatient(pDude), pIssue(whoWroteMe) {};
     virtual ~Record();
 protected:
-
+    Patient* pPatient;
+    Institution* pIssue;
+    date_type _date_of_issue;
+    std::string mCategory;
 };
 
 class RecordList final {
 private:
-    std::vector<Record*> patientRecords; // a sorted list of
+    std::vector<Record*> patientRecords; // a sorted list of the patient's medical records, sorted by date
     Patient& owner;
 public:
-    RecordList() = default;
+    RecordList(Patient& rOwner) {
+        owner = rOwner;
+    };
     ~RecordList() {
         while (!patientRecords.empty()) {
             if (patientRecords.back()) delete patientRecords.back();
