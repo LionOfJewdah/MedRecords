@@ -24,18 +24,31 @@ public:
         whereTheyWork = inst;
     };
     virtual ~HealthCareProvider() {};
-    virtual bool hasAccessTo(Patient* pPatient) = 0;
-    virtual bool canAccessTheseRecords(recordClass rc) = 0;
-    virtual bool hasAccessTo(Patient* pPatient, recordClass rc) = 0;
+    // virtual bool hasAccessTo(Patient* pPatient) = 0;
+    // virtual bool canAccessTheseRecords(recordClass rc) = 0;
+    // virtual bool hasAccessTo(Patient* pPatient, recordClass rc) = 0;
+    virtual bool hasAccessTo(Patient* pPatient) {
+        return false;
+    }
+    virtual bool canAccessTheseRecords(recordClass rc) {
+        return false;
+    }
+    virtual bool hasAccessTo(Patient* pPatient, recordClass rc) {
+        return false;
+    }
+
     Institution* getInstitution() const {
         return whereTheyWork;
     }
     virtual std::string typeOfProvider() const {
         return "Health care provider";
     }
-    virtual void addRecord(Patient* pPatient, Record /*&& const */ rcd) = 0;
+    virtual bool addRecord(Patient* pPatient, recordClass rc, std::string stuff = "", date_type Dt = day_clock::local_day()) {
+        // do stuff if you can
+        return false;
+    }
     virtual void printInfo() const {
-        std::cout << "Health care provider: " << mName << '\t' << "Institution: " << 
+        std::cout << "Health care provider: " << mName << '\t' << "Institution: " << whereTheyWork->getName();
     }
 
 protected:

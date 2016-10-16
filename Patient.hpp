@@ -17,14 +17,14 @@ typedef boost::gregorian::date date_type;
 using boost::gregorian::from_undelimited_string;
 #include "Person.hpp"
 #include "HealthCareProvider.hpp"
-//#include "InsuranceProvider.hpp"
+#include "InsuranceProvider.hpp"
 // #include <vector>
 #include <set>
 //#include <ctime> // time.h
 //typedef struct tm date_type;
 
 class RecordList; // forward declaration
-class InsuranceProvider;
+// class InsuranceProvider;
 
 class Patient final : public Person {
 private:
@@ -95,7 +95,16 @@ public:
         return mDate_of_birth;
     }
 
-    
+    void printInfo() const {
+        std::cout << "Patient: " << mName << "\tID: " << mID << "\tLocation: ";
+        if (!location) std::cout << "not being treated";
+        else std::cout << location->getName();
+        std::cout << "\tInsurance: ";
+        if (!coverage) std::cout << "None";
+        else std::cout << coverage->getName();
+    }
+
+    RecordList* pointToRecords() const { return whereMyRecordsAt; }
 
 protected:
 };

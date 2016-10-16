@@ -34,6 +34,26 @@ public:
     virtual bool hasAccessTo(Patient* pPatient, recordClass rc)  {
         return (hasAccessTo(pPatient) && canAccessTheseRecords(rc));
     }
+    virtual bool addRecord(Patient* pPatient, recordClass rc, std::string stuff = "", date_type Dt = day_clock::local_day()) {
+        if (!pPatient) return false;
+        if (!hasAccessTo(pPatient, rc)) return false;
+        switch (rc) {
+            case recordClass::BIRTH :
+                (pPatient->pointToRecords())->addRecord(new birthRecord(pPatient,this))
+                break;
+            case recordClass::HOSPITALIZATION :
+
+
+            default:
+                return false;
+        }
+
+        return true;
+    }
+    virtual void printInfo() const {
+        std::cout << "Doctor: " << mName << '\t' << "Institution: " << whereTheyWork->getName();
+    }
+    //from HealthCareProvider.hpp: `enum class recordClass : int { BIRTH = 0, PHYSICAL = 1, ALLERGY, HOSPITALIZATION, PRESCRIPTION, SURGERY, DISEASE };`
 protected:
 
 };

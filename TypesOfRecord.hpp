@@ -19,6 +19,7 @@ typedef HealthCareProvider HCP;
 class birthRecord : public Record {
     birthRecord(Patient* pDude, Doctor* whoBirthedMeh) : Record(pDude, whoBirthedMeh, recordClass::BIRTH) {
         if (pDude) this->setIssueDate(pDude->getDOB());
+        else this->setIssueDate(day_clock::local_day());
     }
     ~birthRecord();
 };

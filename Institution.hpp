@@ -19,7 +19,7 @@ public:
         mInstID = ID;
     }
     virtual ~Institution() = default;
-    std::string getName() { return mName; }
+    std::string getName() const { return mName; }
     int getID() { return mInstID; }
     virtual std::string typeOfInst() const {
         return "Institution";

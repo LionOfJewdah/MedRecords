@@ -42,7 +42,7 @@ public:
     : pPatient(pDude), pIssuer(whoWroteMe), mCategory(whatAmI)
     {
         //_date_of_issue = day_clock::local_day();
-        _date_of_issue = dob();
+        _date_of_issue = whenTho;
         if (whoWroteMe) pIssue_Inst = whoWroteMe->getInstitution();
         else pIssue_Inst = 0;
         // safety code against segmentation faults
@@ -65,11 +65,18 @@ public:
     bool operator<(const Record & rhs) {
         return (_date_of_issue < rhs.getDateIssued());
     }
+    recordClass getRecordType() const {
+        return mCategory;
+    }
 };
+
+bool pRecordLess(const Record* lhs, const Record* rhs) {
+    return (lhs->getDateIssued() < rhs->getDateIssued());
+}
 
 class RecordList final {
 private:
-    std::vector<Record> patientRecords; // a sorted list of the patient's medical records, sorted by date
+    std::vector<Record*> patientRecords; // a sorted list of the patient's medical records, sorted by date
     // Patient& owner;
     Patient* owner;
 public:
@@ -87,6 +94,16 @@ public:
     void setOwner(Patient* p) {
         owner = p;
     }
+
+    void addRecord(Record& record) {
+        patientRecords.push_back(record);
+        //std::sort(patientRecords);
+    }
+
+    void sort() {
+        std::sort(patientRecords.begin(), patientRecords.end(), &pRecordLess());
+    }
+    // rarely needs to be called because records are usually added day of
 };
 
 
