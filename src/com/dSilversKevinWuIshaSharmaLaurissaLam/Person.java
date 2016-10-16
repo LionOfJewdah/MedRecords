@@ -1,6 +1,6 @@
 package com.dSilversKevinWuIshaSharmaLaurissaLam;
 
-interface Person {
+public class Person {
 
 	
 	
