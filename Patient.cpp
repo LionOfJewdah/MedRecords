@@ -7,7 +7,7 @@ Patient::Patient(std::string name, int ID, sex gender, date_type dob = day_clock
         mDate_of_birth = dob;
         location = nullptr;
         coverage = dudeOverchargingYou;
-        whereMyRecordsAt->setOwner(this);
+        whereMyRecordsAt = new RecordList(this);
 };
 
 Patient::~Patient(){

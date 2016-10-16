@@ -88,6 +88,9 @@ private:
     // Patient& owner;
     Patient* owner;
 public:
+    RecordList() {
+        owner = 0;
+    };
     RecordList(Patient* pOwner) {
         owner = pOwner;
     };
@@ -99,8 +102,8 @@ public:
     }
     // need to add add, which calls std::sort()
 
-    void setOwner(Patient* p) {
-        owner = p;
+    void setOwner(Patient* pPatient) {
+        owner = pPatient;
     }
 
     void addRecord(Record* record);
