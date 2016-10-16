@@ -17,6 +17,9 @@ private:
 public:
     Oncologist();
     ~Oncologist();
+    std::string typeOfProvider() const {
+        return "Oncologist";
+    }
 protected:
 
 };

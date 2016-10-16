@@ -24,6 +24,9 @@ public:
     Institution* getInstitution() const {
         return whereTheyWork;
     }
+    virtual std::string typeOfProvider() const {
+        return "Health care provider";
+    }
 protected:
     Institution* whereTheyWork;
     // Institution & whereTheyWork;

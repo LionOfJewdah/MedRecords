@@ -14,7 +14,7 @@
 class Person {
 private:
 public:
-    Person(std::string name, int ID) : mID(ID), mName(name) {};
+    Person(std::string name, int ID) : mName(name), mID(ID) {};
     virtual ~Person() {};
     std::string getName() { return mName; }
     virtual int getID() { return mID; }

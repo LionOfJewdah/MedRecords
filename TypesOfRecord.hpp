@@ -60,7 +60,7 @@ protected:
     std::string operation;
     std::string result;
 public:
-    surgeryRecord(Patient* pP, Institution* pI, Surgeon* pS)
+    surgeryRecord(Patient* pP, Surgeon* pI, Surgeon* pS)
     : Record(pP, pI, "surgery")
         {
 
@@ -75,7 +75,7 @@ protected:
     //std::string operation;
     //std::string result;
 public:
-    allergyRecord(Patient* pDude, Institution* issuer, std::string what_al) : Record(pDude, issuer, "allergy"), allergies(what_al) {};
+    allergyRecord(Patient* pDude, Analyst* issuer, std::string what_al) : Record(pDude, issuer, "allergy"), allergies(what_al) {};
     ~allergyRecord();
 };
 

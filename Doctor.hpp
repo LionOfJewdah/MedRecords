@@ -11,11 +11,15 @@
 
 #include "HealthCareProvider.hpp"
 
+// has long-term access to a patient's medical records while authorized
 class Doctor : public HealthCareProvider {
 private:
 public:
     Doctor();
     virtual ~Doctor();
+    virtual std::string typeOfProvider() const {
+        return "Doctor";
+    }
 protected:
 
 };

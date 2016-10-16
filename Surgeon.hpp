@@ -16,6 +16,9 @@ private:
 public:
     Surgeon();
     ~Surgeon();
+    std::string typeOfProvider() const {
+        return "Surgeon";
+    }
 protected:
 
 };
