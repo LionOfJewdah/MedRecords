@@ -4,7 +4,7 @@ CPPFLAGS 	= -g -Wall
 OBJ_DIR		= obj
 BIN_DIR 	= bin
 
-Project: test.cpp Patient.cpp Person.hpp Doctor.cpp HealthCareProvider.hpp InsuranceProvider.cpp EMT.cpp Oncologist.cpp Nurse.cpp Surgeon.cpp TypesOfRecord.hpp PhysicianAssistant.cpp
+Project: test.cpp Patient.cpp Record.cpp Person.hpp Doctor.cpp HealthCareProvider.hpp InsuranceProvider.cpp EMT.cpp Oncologist.cpp Nurse.cpp Surgeon.cpp TypesOfRecord.hpp PhysicianAssistant.cpp
 	$(CXX) $(CPPFLAGS) $(STD) $^ -o $(BIN_DIR)/$@.out
 
 Person: Person.hpp

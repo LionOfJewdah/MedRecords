@@ -58,7 +58,7 @@ public:
         else pIssue_Inst = 0;
     };
     */
-    virtual ~Record() = default;
+    /*virtual*/ ~Record() = default;
     date_type getDateIssued() const {
         return _date_of_issue;
     }
@@ -71,15 +71,16 @@ public:
     }
 };
 
-bool pRecordLess(const Record* lhs, const Record* rhs) {
-    return (lhs->getDateIssued() < rhs->getDateIssued());
-}
-
-typedef std::vector<Record*>::iterator vRit;
-// bool itRecordLess(const vRit lhs, const vRit rhs) {
-//     //return ((*lhs)->getDateIssued() < (*rhs)->getDateIssued());
-//     return (pRecordLess(*lhs, *rhs));
+// bool pRecordLess(const Record* lhs, const Record* rhs) {
+//     return (lhs->getDateIssued() < rhs->getDateIssued());
 // }
+//
+// typedef std::vector<Record*>::iterator vRit;
+// // bool itRecordLess(const vRit lhs, const vRit rhs) {
+// //     //return ((*lhs)->getDateIssued() < (*rhs)->getDateIssued());
+// //     return (pRecordLess(*lhs, *rhs));
+// // }
+// moved to implementation
 
 class RecordList final {
 private:
@@ -102,16 +103,8 @@ public:
         owner = p;
     }
 
-    void addRecord(Record* record) {
-        patientRecords.push_back(record);
-        //std::sort(patientRecords);
-        if (record->getDateIssued() != day_clock::local_day())
-            sort(); // inefficient to sort every time; only need to on non-recent documents
-    }
-
-    void sort() {
-        std::sort(patientRecords.begin(), patientRecords.end(), &pRecordLess);
-    }
+    void addRecord(Record* record);
+    void sort();
     // rarely needs to be called because records are usually added day of
 };
 
