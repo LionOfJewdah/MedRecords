@@ -11,6 +11,8 @@
 
 #include "Record.hpp"
 #include "Hospital.hpp"
+using boost::date_time::day_clock;
+using boost::date_time::local_day;
 
 typedef HealthCareProvider HCP;
 
@@ -22,20 +24,16 @@ class birthRecord : public Record {
 };
 
 class hospitalizationRecord : public Record {
-private:
+protected:
     date_type hospDate;
     date_type releaseDate;
 public:
-    hospitalizationRecord(Patient* pPatient, HCP* pCaregiver, date_type in_date, date_type out_date = *localtime(time(0)) :  Record(pPatient, pCaregiver, out_date, HOSPITALIZATION)
+    hospitalizationRecord(Patient* pPatient, HCP* pCaregiver, date_type in_date = day_clock(local_day()), date_type out_date = day_clock(local_day())
+    :  Record(pPatient, pCaregiver, out_date, HOSPITALIZATION)
     {
         hospDate = in_date;
         releaseDate = out_date;
     }
-    // hospitalizationRecord(Patient* pPatient, HCP* pCaregiver, date_type in_date, date_type out_date = *localtime(time(0)) :  Record(pPatient, pCaregiver, out_date, HOSPITALIZATION)
-    // {
-    //     hospDate = in_date;
-    //     releaseDate = out_date;
-    // }
     ~hospitalizationRecord();
     // void INeedToMakeThisClassAbstract() {}; // jk lol
 };
@@ -44,10 +42,10 @@ class prescriptionRecord : public Record {
 protected:
     std::string _name_of_pharmacy;
 public:
-    prescriptionRecord(Patient* pDude, Institution* issuer, std::string whoFillingMeMang) : Record(pDude, issuer, PRESCRIPTION) {
+    prescriptionRecord(Patient* pDude, HCP* issuer, std::string whoFillingMeMang) : Record(pDude, issuer, PRESCRIPTION) {
         _name_of_pharmacy = whoFillingMeMang;
     };
-    prescriptionRecord(Patient* pDude, Institution* issuer, date_type when, std::string whoFillingMeMang) : Record(pDude, issuer, when, PRESCRIPTION) {
+    prescriptionRecord(Patient* pDude, HCP* issuer, date_type when, std::string whoFillingMeMang) : Record(pDude, issuer, when, PRESCRIPTION) {
         _name_of_pharmacy = whoFillingMeMang;
     };
     ~prescriptionRecord();
@@ -61,8 +59,10 @@ protected:
     //date_type onset;
     //date_type recovery;
 public:
-    diseaseRecord(Patient* pDude, Institution* issuer, std::string n_dis, std::string diag) : Record(pDude, issuer, "disease"), diseaseName(n_dis), diagnosis(diag) {
-
+    diseaseRecord(Patient* pDude, HCP* issuer, std::string n_dis, std::string diag)
+    : Record(pDude, issuer, "disease"), diseaseName(n_dis), diagnosis(diag)
+    {
+        // fak man maybe I should have Analyst* issuer
     };
     ~diseaseRecord();
     // void INeedToMakeThisClassAbstract() {}; // jk lol
@@ -74,8 +74,8 @@ protected:
     std::string operation;
     std::string result;
 public:
-    surgeryRecord(Patient* pP, Surgeon* pI, Surgeon* pS)
-    : Record(pP, pI, "surgery")
+    surgeryRecord(Patient* pPatient, Surgeon* pSurgeon, date_type Dt = day_clock(local_day()))
+    : Record(pPatient, pSurgeon, Dt, SURGERY)
         {
 
         }
@@ -89,8 +89,8 @@ protected:
     //std::string operation;
     //std::string result;
 public:
-    allergyRecord(Patient* pDude, Analyst* issuer, std::string what_al) : Record(pDude, issuer, "allergy"), allergies(what_al) {};
-    ~allergyRecord();
+    allergyRecord(Patient* pDude, HCP* issuer, std::string what_al) : Record(pDude, issuer, ALLERGY), allergies(what_al) {};
+    ~allergyRecord(); // Analyst* issuer
     // void INeedToMakeThisClassAbstract() {}; // jk lol
 };
 

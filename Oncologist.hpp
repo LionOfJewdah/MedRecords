@@ -12,19 +12,23 @@
 #include "Doctor.hpp"
 
 // has long-term access to all of a patient's medical records while treating that patient
-class Oncologist : public Doctor {
+class Oncologist final : public Doctor {
 private:
 public:
-    Oncologist();
+    Oncologist(std::string Name, int ID, Institution* inst = 0)
+    : Doctor (Name, ID, inst)
+    {
+
+    }
     ~Oncologist();
-    std::string typeOfProvider() const {
+    std::string typeOfProvider() const final {
         return "Oncologist";
     }
     //bool hasAccessTo(Patient* pPatient) not overloaded from doctor
-    bool canAccessTheseRecords(recordClass rc) {
+    bool canAccessTheseRecords(recordClass rc) final {
         return true;
     }
-    bool hasAccessTo(Patient* pPatient, recordClass rc) {
+    bool hasAccessTo(Patient* pPatient, recordClass rc) final {
         return hasAccessTo(pPatient); // because can access any type of record
     }
 protected:
