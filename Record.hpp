@@ -20,14 +20,21 @@
 class Record {
 private:
 public:
-    Record(Patient* pDude, Institution* whoWroteMe, std::string whatAmI) : pPatient(pDude), pIssue(whoWroteMe), mCategory(whatAmI) {
+    Record(Patient* pDude, HealthCareProvider* whoWroteMe, std::string whatAmI) : pPatient(pDude), pIssuer(whoWroteMe), mCategory(whatAmI) {
         _date_of_issue = *(localtime(time(0)));
+        if (whoWroteMe) pIssue_Inst = whoWroteMe->getInstitution();
+        else pIssue_Inst = 0;
+        // safety code against segmentation faults
     };
-    Record(Patient* pDude, Institution* whoWroteMe, date_type whenTho, std::string whatAmI) : pPatient(pDude), pIssue(whoWroteMe), _date_of_issue(whenTho), mCategory(whatAmI) {};
+    Record(Patient* pDude, HealthCareProvider* whoWroteMe, date_type whenTho, std::string whatAmI) : pPatient(pDude), pIssuer(whoWroteMe), _date_of_issue(whenTho), mCategory(whatAmI) {
+        if (whoWroteMe) pIssue_Inst = whoWroteMe->getInstitution();
+        else pIssue_Inst = 0;
+    };
     virtual ~Record();
 protected:
     Patient* pPatient;
-    Institution* pIssue;
+    HealthCareProvider* pIssuer;
+    Institution* pIssue_Inst;
     date_type _date_of_issue;
     std::string mCategory;
         // can take values "prescription", "disease", "birth", "allergy", "surgery", "labresult", "hospitalization"

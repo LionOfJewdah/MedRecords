@@ -7,14 +7,14 @@ public class Patient extends Person {
 	protected sex mGender;
 	protected Person[] mNextOfKin;
 	protected HealthCareProvider primaryCarePhysician;
-	protected HealthCareProvider[] authorisedDoctors;
+	protected HealthCareProvider authorisedDoctors;
 	
 	public Person[] getKin() {
 		return mNextOfKin;
 	}
 	
 	public void authorise(HealthCareProvider doctorDude) {
-		
+		authorised
 	}
 	
 	Patient(String name, Date birthdate, int socSec, sex gender) {

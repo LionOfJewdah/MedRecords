@@ -56,11 +56,15 @@ public:
 
 class surgeryRecord : public Record {
 protected:
-    std::string surgeon; // HealthCareProvider* surgeon;
+    //Surgeon* pSurgeon; // HealthCareProvider* surgeon;
     std::string operation;
     std::string result;
 public:
-    surgeryRecord();
+    surgeryRecord(Patient* pP, Institution* pI, Surgeon* pS)
+    : Record(pP, pI, "surgery")
+        {
+
+        }
     ~surgeryRecord();
 
 };
@@ -71,9 +75,7 @@ protected:
     //std::string operation;
     //std::string result;
 public:
-    allergyRecord(Patient* pDude, Institution* issuer, std::string n_dis, std::string diag) : Record(pDude, issuer, "disease"), diseaseName(n_dis), diagnosis(diag) {
-
-    };
+    allergyRecord(Patient* pDude, Institution* issuer, std::string what_al) : Record(pDude, issuer, "allergy"), allergies(what_al) {};
     ~allergyRecord();
 };
 

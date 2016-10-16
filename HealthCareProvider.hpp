@@ -21,6 +21,9 @@ public:
     virtual ~HealthCareProvider();
     virtual bool hasAccessTo(Patient* pPatient) = 0;
     virtual bool hasAccessTo(Patient* pPatient) = 0;
+    Institution* getInstitution() const {
+        return whereTheyWork;
+    }
 protected:
     Institution* whereTheyWork;
     // Institution & whereTheyWork;
