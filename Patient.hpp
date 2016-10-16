@@ -31,7 +31,7 @@ private:
     std::set<HealthCareProvider*> authorizedDoctors;
     RecordList* whereMyRecordsAt;
     InsuranceProvider* coverage; // NULL if they have no insurance
-    Institution* whereAmIAt; // NULL if not in a hospital or clinic, else points to the thing
+    Institution* location; // NULL if not in a hospital or clinic, else points to the thing
     typedef std::set<HealthCareProvider*>::iterator guysWhoCanTreatMe;
 public:
 
@@ -45,7 +45,7 @@ public:
             whereAmIAt = nullptr;
         };
     ~Patient();
-    sex getSex() { return mGender; }
+    sex getSex() const { return mGender; }
     bool isAuthorized (HealthCareProvider* pDude) const {
         guysWhoCanTreatMe goIteratorGo = authorizedDoctors.find(pDude);
         return (goIteratorGo != authorizedDoctors.end());
@@ -60,6 +60,12 @@ public:
     } // true if was removed, false if wasn't found
     InsuranceProvider* whosCoveringMe() const {
         return coverage;
+    }
+    bool amICovered() const {
+        return (coverage != nullptr);
+    }
+    Institution* whereAmIAt() const {
+        return location;
     }
 protected:
 };

@@ -11,6 +11,7 @@
 
 #include <vector>
 #include "Patient.hpp"
+//#include "HealthCareProvider.hpp"
 #include "Doctor.hpp"
 #include <ctime>
 #include "Institution.hpp"
@@ -36,6 +37,7 @@ class RecordList final {
 private:
     std::vector<Record*> patientRecords; // a sorted list of the patient's medical records, sorted by date
     Patient& owner;
+    // Patient* owner;
 public:
     RecordList(Patient& rOwner) {
         owner = rOwner;

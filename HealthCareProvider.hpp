@@ -20,8 +20,10 @@ public:
     HealthCareProvider();
     virtual ~HealthCareProvider();
     virtual bool hasAccessTo(Patient* pPatient) = 0;
+    virtual bool hasAccessTo(Patient* pPatient) = 0;
 protected:
-    Institution & whereTheyWork;
+    Institution* whereTheyWork;
+    // Institution & whereTheyWork;
 };
 
 
