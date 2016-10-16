@@ -10,14 +10,15 @@
 #define PhysicianAssistant_hpp
 
 #include "HealthCareProvider.hpp"
+class Doctor;
 
 class PhysicianAssistant : public HealthCareProvider {
 private:
 public:
-    PhysicianAssistant(std::string Name, int ID, Institution* inst = 0)
+    PhysicianAssistant(std::string Name, int ID, Institution* inst = 0, Doctor* dr = 0)
     : HealthCareProvider(Name, ID, inst)
     {
-
+        supervisor = dr;
     };
     ~PhysicianAssistant() = default;
     bool hasAccessTo(Patient* pPatient) {
@@ -35,7 +36,7 @@ public:
         return "Physician\'s Assistant";
     }
 protected:
-
+    Doctor* supervisor;
 };
 
 
