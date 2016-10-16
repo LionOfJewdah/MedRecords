@@ -16,7 +16,7 @@ private:
     //Division* division;
     Institution* division;
 public:
-    Surgeon()(std::string Name, int ID, Institution* inst = 0)
+    Surgeon(std::string Name, int ID, Institution* inst = 0)
     : Doctor (Name, ID, inst)
     {
         division = inst; // one day, will be a division of inst

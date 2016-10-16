@@ -16,14 +16,9 @@ private:
 public:
     InsuranceProvider(std::string name, int ID) : Institution(name, ID) {};
     ~InsuranceProvider() = default;
-    bool hasAccessTo(Patient* p) {
-        if (!p) return false;
-        if (p->whosCoveringMe() == this) return true;
-        return false;
-    }
+    bool hasAccessTo(Patient* p) const;
 protected:
 
 };
-
 
 #endif /* InsuranceProvider_hpp */

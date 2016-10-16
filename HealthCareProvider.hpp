@@ -13,6 +13,7 @@
 #include "Person.hpp"
 
 enum class recordClass : int { BIRTH = 0, PHYSICAL = 1, ALLERGY, HOSPITALIZATION, PRESCRIPTION, SURGERY, DISEASE };
+enum class healthCareProviderModel : int { HCP = 0, NURSE = 1, PA = 2, DOCTOR = 3, SURGEON = 4, ONCOLOGIST = 5, EMT = 6};
 
 class Patient; // forward declaration
 
@@ -36,7 +37,11 @@ public:
     virtual bool hasAccessTo(Patient* pPatient, recordClass rc) {
         return false;
     }
-    virtual bool addRecord(Patient* pPatient, recordClass rc, std::string string1 = "", date_type Dt = day_clock::local_day(), std::string string2 = "") /*const*/ {
+    virtual bool addRecord(Patient* pPatient, recordClass rc, std::string string1, date_type Dt, std::string string2) {
+        return false;
+    }
+    /*
+    virtual bool addRecord(Patient* pPatient, recordClass rc, std::string string1 = "", date_type Dt = day_clock::local_day(), std::string string2 = "") { //const {
         if (!pPatient) return false;
         if (!hasAccessTo(pPatient, rc)) return false;
         switch (rc) {
@@ -63,6 +68,7 @@ public:
         }
         return true;
     }
+    */
 
     Institution* getInstitution() const {
         return whereTheyWork;

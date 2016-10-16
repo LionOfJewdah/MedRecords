@@ -11,15 +11,15 @@
 
 #include <vector>
 #include "Patient.hpp"
-//#include "HealthCareProvider.hpp" // included in Doctor
-#include "Doctor.hpp"
-#include "Surgeon.hpp"
-#include "EMT.hpp"
-//#include "Analyst.hpp"
-//#include <ctime>
+#include "HealthCareProvider.hpp"
 #include "boost/date_time/gregorian/gregorian.hpp"
 #include "Institution.hpp"
 #include <algorithm> // std::sort()
+//#include "Doctor.hpp"
+//#include "Surgeon.hpp"
+//#include "EMT.hpp"
+//#include "Analyst.hpp"
+//#include <ctime>
 
 class Record {
 protected:
@@ -30,8 +30,6 @@ protected:
     HealthCareProvider* pIssuer;
     Institution* pIssue_Inst;
     date_type _date_of_issue;
-    // std::string mCategory;
-    //     // can take values "prescription", "disease", "birth", "allergy", "surgery", "labresult", "hospitalization"
     recordClass mCategory;
     //from HealthCareProvider.hpp: `enum class recordClass : int { BIRTH = 0, PHYSICAL = 1, ALLERGY, HOSPITALIZATION, PRESCRIPTION, SURGERY, DISEASE };`
 private:
@@ -74,6 +72,11 @@ bool pRecordLess(const Record* lhs, const Record* rhs) {
     return (lhs->getDateIssued() < rhs->getDateIssued());
 }
 
+typedef std::vector<Record*>::iterator vRit;
+bool itRecordLess(const vRit lhs, const vRit rhs) {
+    return ((*lhs)->getDateIssued() < (*rhs)->getDateIssued());
+}
+
 class RecordList final {
 private:
     std::vector<Record*> patientRecords; // a sorted list of the patient's medical records, sorted by date
@@ -95,13 +98,13 @@ public:
         owner = p;
     }
 
-    void addRecord(Record& record) {
+    void addRecord(Record* record) {
         patientRecords.push_back(record);
         //std::sort(patientRecords);
     }
 
     void sort() {
-        std::sort(patientRecords.begin(), patientRecords.end(), &pRecordLess());
+        std::sort(patientRecords.begin(), patientRecords.end(), &itRecordLess());
     }
     // rarely needs to be called because records are usually added day of
 };

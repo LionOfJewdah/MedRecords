@@ -13,10 +13,14 @@
 #include "Hospital.hpp"
 //using boost::date_time::day_clock;
 //using boost::date_time::local_day;
+// #include "Doctor.hpp"
+// #include "Surgeon.hpp"
+// #include ""
 
 typedef HealthCareProvider HCP;
 
 class birthRecord : public Record {
+public:
     birthRecord(Patient* pDude, Doctor* whoBirthedMeh) : Record(pDude, whoBirthedMeh, recordClass::BIRTH) {
         if (pDude) this->setIssueDate(pDude->getDOB());
         else this->setIssueDate(day_clock::local_day());
@@ -30,7 +34,7 @@ protected:
     date_type releaseDate;
 public:
     hospitalizationRecord(Patient* pPatient, HCP* pCaregiver, date_type in_date = day_clock::local_day(), date_type out_date = day_clock::local_day())
-    :  Record(pPatient, pCaregiver, out_date, recordClass::HOSPITALIZATION)
+    :  Record(pPatient, pCaregiver, recordClass::HOSPITALIZATION, out_date)
     {
         hospDate = in_date;
         releaseDate = out_date;
@@ -46,7 +50,7 @@ public:
     prescriptionRecord(Patient* pDude, HCP* issuer, std::string whoFillingMeMang) : Record(pDude, issuer, recordClass::PRESCRIPTION) {
         _name_of_pharmacy = whoFillingMeMang;
     };
-    prescriptionRecord(Patient* pDude, HCP* issuer, date_type when, std::string whoFillingMeMang) : Record(pDude, issuer, when, recordClass::PRESCRIPTION) {
+    prescriptionRecord(Patient* pDude, HCP* issuer, date_type when, std::string whoFillingMeMang) : Record(pDude, issuer, recordClass::PRESCRIPTION, when) {
         _name_of_pharmacy = whoFillingMeMang;
     };
     ~prescriptionRecord();
@@ -61,7 +65,7 @@ protected:
     //date_type recovery;
 public:
     diseaseRecord(Patient* pDude, HCP* issuer, date_type Dt = day_clock::local_day(), std::string n_dis = "Cold", std::string diag = "Sick")
-    : Record(pDude, issuer, Dt, recordClass::DISEASE), diseaseName(n_dis), diagnosis(diag)
+    : Record(pDude, issuer, recordClass::DISEASE, Dt), diseaseName(n_dis), diagnosis(diag)
     {
         // fak man maybe I should have Analyst* issuer
     };
@@ -76,7 +80,7 @@ protected:
     std::string result;
 public:
     surgeryRecord(Patient* pPatient, Surgeon* pSurgeon, date_type Dt = day_clock::local_day(), std::string op = "Surgery", std::string res = "Good")
-    : Record(pPatient, pSurgeon, Dt, recordClass::SURGERY)
+    : Record(pPatient, pSurgeon, recordClass::SURGERY, Dt)
         {
             operation = op;
             result = res;
@@ -93,7 +97,7 @@ protected:
     //std::string operation;
     //std::string result;
 public:
-    allergyRecord(Patient* pDude, HCP* issuer, date_type Dt = day_clock::local_day(), std::string what_al = "Pollen") : Record(pDude, issuer, Dt, recordClass::ALLERGY), allergies(what_al) {};
+    allergyRecord(Patient* pDude, HCP* issuer, date_type Dt = day_clock::local_day(), std::string what_al = "Pollen") : Record(pDude, issuer, recordClass::ALLERGY, Dt), allergies(what_al) {};
     ~allergyRecord(); // Analyst* issuer
     // void INeedToMakeThisClassAbstract() {}; // jk lol
 };

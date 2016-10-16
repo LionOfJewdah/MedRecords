@@ -35,13 +35,14 @@ public:
         if (!hasAccessTo(pPatient, rc)) return false;
         switch (rc) {
             case recordClass::BIRTH :
-                (pPatient->pointToRecords())->addRecord(new birthRecord(pPatient,this));
+                //(pPatient->pointToRecords())->addRecord(new birthRecord(pPatient,this));
+                return false;
                 break;
             case recordClass::HOSPITALIZATION :
                 (pPatient->pointToRecords())->addRecord(new hospitalizationRecord(pPatient,this, Dt));
                 break;
             case recordClass::PRESCRIPTION :
-                (pPatient->pointToRecords())->addRecord(new prescriptionRecord(pPatient,this, string1));
+                return false; // EMT's cant prescribe you stuff
                 break;
             case recordClass::SURGERY :
                 (pPatient->pointToRecords())->addRecord(new surgeryRecord(pPatient,this,Dt,string1, string2));

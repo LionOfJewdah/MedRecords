@@ -45,7 +45,7 @@ public:
                 (pPatient->pointToRecords())->addRecord(new prescriptionRecord(pPatient,this, string1));
                 break;
             case recordClass::SURGERY :
-                (pPatient->pointToRecords())->addRecord(new surgeryRecord(pPatient,this,Dt,string1, string2));
+                return false;
                 break;
             case recordClass::DISEASE :
                 (pPatient->pointToRecords())->addRecord(new diseaseRecord(pPatient,this, Dt, string1, string2));
