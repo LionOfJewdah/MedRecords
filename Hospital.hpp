@@ -16,6 +16,9 @@ private:
 public:
     Hospital(std::string Name, int hospID) : Institution(Name, hospID) {};
     virtual ~Hospital()  = default;
+    std::string typeOfInst() const {
+        return "Hospital";
+    }
 protected:
 
 };

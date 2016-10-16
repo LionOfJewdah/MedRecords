@@ -38,23 +38,25 @@ private:
 public:
     // Record(Patient* pDude, HealthCareProvider* whoWroteMe/*, std::string whatAmI*/) :
     // pPatient(pDude), pIssuer(whoWroteMe)/*, mCategory(whatAmI) */
-    Record(Patient* pDude, HealthCareProvider* whoWroteMe, recordClass whatAmI)
+    Record(Patient* pDude, HealthCareProvider* whoWroteMe, recordClass whatAmI, date_type whenTho = day_clock::local_day())
     : pPatient(pDude), pIssuer(whoWroteMe), mCategory(whatAmI)
     {
-        //_date_of_issue = day_clock(local_day());
-        _date_of_issue = day_clock::local_day();
+        //_date_of_issue = day_clock::local_day();
+        _date_of_issue = dob();
         if (whoWroteMe) pIssue_Inst = whoWroteMe->getInstitution();
         else pIssue_Inst = 0;
         // safety code against segmentation faults
     };
     // Record(Patient* pDude, HealthCareProvider* whoWroteMe, date_type whenTho/*, std::string whatAmI*/) :
     // pPatient(pDude), pIssuer(whoWroteMe), _date_of_issue(whenTho)/*, mCategory(whatAmI) */
+    /*
     Record(Patient* pDude, HealthCareProvider* whoWroteMe, date_type whenTho, recordClass whatAmI) :
     pPatient(pDude), pIssuer(whoWroteMe), _date_of_issue(whenTho), mCategory(whatAmI)
     {
         if (whoWroteMe) pIssue_Inst = whoWroteMe->getInstitution();
         else pIssue_Inst = 0;
     };
+    */
     virtual ~Record();
     date_type getDateIssued() const {
         return _date_of_issue;

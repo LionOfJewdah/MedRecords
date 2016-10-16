@@ -21,6 +21,9 @@ public:
     virtual ~Institution() = default;
     std::string getName() { return mName; }
     int getID() { return mInstID; }
+    virtual std::string typeOfInst() const {
+        return "Institution";
+    }
 protected:
     std::string mName;
     int mInstID;

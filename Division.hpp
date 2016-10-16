@@ -17,6 +17,9 @@ private:
 public:
     Division();
     ~Division();
+    std::string typeOfInst() const {
+        return "Hospital Division";
+    }
 protected:
 
 };

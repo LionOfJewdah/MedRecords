@@ -18,6 +18,7 @@ public:
     virtual ~Person() {};
     std::string getName() const { return mName; }
     virtual int getID() const { return mID; }
+    virtual void printInfo() const = 0;
 
 protected:
     std::string mName;

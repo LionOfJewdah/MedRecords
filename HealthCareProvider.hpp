@@ -34,6 +34,10 @@ public:
         return "Health care provider";
     }
     virtual void addRecord(Patient* pPatient, Record /*&& const */ rcd) = 0;
+    virtual void printInfo() const {
+        std::cout << "Health care provider: " << mName << '\t' << "Institution: " << 
+    }
+
 protected:
     Institution* whereTheyWork;
     // Institution & whereTheyWork;

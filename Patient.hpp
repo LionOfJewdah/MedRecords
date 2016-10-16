@@ -39,13 +39,14 @@ private:
     typedef std::set<HealthCareProvider*>::iterator guysWhoCanTreatMe;
 
 public:
-    Patient(std::string name, int ID, sex gender)
+    Patient(std::string name, int ID, sex gender, date_type dob = day_clock::local_day(), InsuranceProvider* dudeOverchargingYou = 0)
         : Person(name, ID), mGender(gender) {
             //mDate_of_birth = day_clock(local_day());
-            mDate_of_birth = day_clock::local_day();
+            mDate_of_birth = dob;
             location = nullptr;
-            coverage = nullptr;
+            coverage = dudeOverchargingYou;
     };
+    /*
     Patient(std::string name, int ID, sex gender, date_type dob)
         : Person(name, ID), mDate_of_birth(dob), mGender(gender) {
             location = nullptr;
@@ -56,6 +57,7 @@ public:
             location = nullptr;
             coverage = dudeOverchargingYou;
     };
+    */
     ~Patient() {
         //delete whereMyRecordsAt;
     }
@@ -92,6 +94,8 @@ public:
     date_type getDOB() const {
         return mDate_of_birth;
     }
+
+    
 
 protected:
 };
