@@ -60,8 +60,8 @@ protected:
     //date_type onset;
     //date_type recovery;
 public:
-    diseaseRecord(Patient* pDude, HCP* issuer, std::string n_dis, std::string diag)
-    : Record(pDude, issuer, recordClass::DISEASE), diseaseName(n_dis), diagnosis(diag)
+    diseaseRecord(Patient* pDude, HCP* issuer, date_type Dt = day_clock::local_day(), std::string n_dis = "Cold", std::string diag = "Sick")
+    : Record(pDude, issuer, Dt, recordClass::DISEASE), diseaseName(n_dis), diagnosis(diag)
     {
         // fak man maybe I should have Analyst* issuer
     };
@@ -75,10 +75,13 @@ protected:
     std::string operation;
     std::string result;
 public:
-    surgeryRecord(Patient* pPatient, Surgeon* pSurgeon, date_type Dt = day_clock::local_day())
+    surgeryRecord(Patient* pPatient, Surgeon* pSurgeon, date_type Dt = day_clock::local_day(), std::string op = "Surgery", std::string res = "Good")
     : Record(pPatient, pSurgeon, Dt, recordClass::SURGERY)
         {
-
+            operation = op;
+            result = res;
+            if (op == "") operation = "Surgery";
+            if (res == "") result = "Good";
         }
     ~surgeryRecord();
     // void INeedToMakeThisClassAbstract() {}; // jk lol
@@ -90,7 +93,7 @@ protected:
     //std::string operation;
     //std::string result;
 public:
-    allergyRecord(Patient* pDude, HCP* issuer, std::string what_al) : Record(pDude, issuer, recordClass::ALLERGY), allergies(what_al) {};
+    allergyRecord(Patient* pDude, HCP* issuer, date_type Dt = day_clock::local_day(), std::string what_al = "Pollen") : Record(pDude, issuer, Dt, recordClass::ALLERGY), allergies(what_al) {};
     ~allergyRecord(); // Analyst* issuer
     // void INeedToMakeThisClassAbstract() {}; // jk lol
 };

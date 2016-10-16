@@ -65,11 +65,13 @@ public:
     sex getSex() const { return mGender; }
 
     bool isAuthorized (HealthCareProvider* pDude) const {
+        if (!pDude) return false; // no null pointers pls
         guysWhoCanTreatMe goIteratorGo = authorizedDoctors.find(pDude);
         return (goIteratorGo != authorizedDoctors.end());
     } // true if found, else false
 
     bool authorize (HealthCareProvider* pDude) {
+        if (!pDude) return false;
         std::pair<guysWhoCanTreatMe, bool> thing = authorizedDoctors.insert(pDude);
         return thing.second;
     } // false if pDude was already authorized, true if newly authorized
