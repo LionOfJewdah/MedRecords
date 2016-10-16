@@ -24,6 +24,7 @@ int main(int argc, char* argv[])
     //assert (David.isAuthorized(&Kevin) == true);
 
     std::cout << "David.isAuthorized(&Kevin) == " << std::boolalpha << David.isAuthorized(&Kevin) << "\n";
+    //std::vector<Patient> Vect 
 
     return 0;
 }
