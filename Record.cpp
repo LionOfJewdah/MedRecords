@@ -20,3 +20,10 @@ void RecordList::addRecord(Record* record) {
 void RecordList::sort() {
    std::sort(patientRecords.begin(), patientRecords.end(), &pRecordLess);
 }
+
+RecordList::~RecordList() {
+    while (!patientRecords.empty()) {
+        if (patientRecords.back() != nullptr) delete patientRecords.back();
+        patientRecords.pop_back();
+    } // dynamic memory management
+}

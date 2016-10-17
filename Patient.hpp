@@ -61,6 +61,8 @@ public:
     */
     ~Patient(); // in implementation file
 
+    Patient(Patient && other);
+
     sex getSex() const { return mGender; }
 
     bool isAuthorized (HealthCareProvider* pDude) const {
@@ -106,6 +108,10 @@ public:
     }
 
     RecordList* pointToRecords() const { return whereMyRecordsAt; }
+
+    const std::set<HealthCareProvider*> & whosMyDoctors() const {
+        return authorizedDoctors;
+    }
 
 protected:
 };

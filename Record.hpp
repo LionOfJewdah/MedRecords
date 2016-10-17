@@ -94,13 +94,12 @@ public:
     RecordList(Patient* pOwner) {
         owner = pOwner;
     };
-    ~RecordList() {
-        while (!patientRecords.empty()) {
-            if (patientRecords.back()) delete patientRecords.back();
-            patientRecords.pop_back();
-        } // dynamic memory management
-    }
+    ~RecordList();
     // need to add add, which calls std::sort()
+    RecordList(RecordList&& other) { // my first move constructor, pls be gentle
+        patientRecords = other.patientRecords;
+        other.patientRecords.clear();
+    }
 
     void setOwner(Patient* pPatient) {
         owner = pPatient;

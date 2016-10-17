@@ -1,51 +1,50 @@
- Patient("Marcella Wemple", 1000, sex::MALE, from_undelimited_string("20070519"), &Aetna)
- Patient("Jackson Laseter", 1000, sex::MALE, from_undelimited_string("19960510"), &Aetna)
- Patient("Johnette Sabatino", 1000, sex::MALE, from_undelimited_string("19780405"), &Aetna)
- Patient("Emelia Mcgirt", 1000, sex::MALE, from_undelimited_string("19810624"), &Aetna)
- Patient("Rich Silvestri", 1000, sex::MALE, from_undelimited_string("20081202"), &Aetna)
- Patient("Marisa Roma", 1000, sex::MALE, from_undelimited_string("19860525"), &Aetna)
- Patient("Katherin Dossey", 1000, sex::MALE, from_undelimited_string("19890112"), &Aetna)
- Patient("Joleen Gillispie", 1000, sex::MALE, from_undelimited_string("19980809"), &Aetna)
- Patient("Benita Carollo", 1000, sex::MALE, from_undelimited_string("19910606"), &Aetna)
- Patient("Russ Nickell", 1000, sex::MALE, from_undelimited_string("19781225"), &Aetna)
- Patient("Setsuko Kendig", 1000, sex::MALE, from_undelimited_string("19890306"), &Aetna)
- Patient("Ilona Tannenbaum", 1000, sex::MALE, from_undelimited_string("20080925"), &Aetna)
- Patient("Kimi Rohman", 1000, sex::MALE, from_undelimited_string("19890429"), &Aetna)
- Patient("Sarai Schreffler", 1000, sex::MALE, from_undelimited_string("20090607"), &Aetna)
- Patient("Vada Hawes", 1000, sex::MALE, from_undelimited_string("20031019"), &Aetna)
- Patient("Bettie Riebel", 1000, sex::MALE, from_undelimited_string("19910531"), &Aetna)
- Patient("Hollie Vankirk", 1000, sex::MALE, from_undelimited_string("20010607"), &Aetna)
- Patient("Joellen Bugg", 1000, sex::MALE, from_undelimited_string("19940517"), &Aetna)
- Patient("Roseann Bittinger", 1000, sex::MALE, from_undelimited_string("19780527"), &Aetna)
- Patient("Darlene Hick", 1000, sex::MALE, from_undelimited_string("20140423"), &Aetna)
- Patient("Eloise Traver", 1000, sex::MALE, from_undelimited_string("19950725"), &Aetna)
- Patient("Dortha Labounty", 1000, sex::MALE, from_undelimited_string("19950430"), &Aetna)
- Patient("Lakendra Truelove", 1000, sex::MALE, from_undelimited_string("19850209"), &Aetna)
- Patient("Tonja Judah", 1000, sex::MALE, from_undelimited_string("19850413"), &Aetna)
- Patient("Melida Prosser", 1000, sex::MALE, from_undelimited_string("19950223"), &Aetna)
- Patient("Darren Garlitz", 1000, sex::MALE, from_undelimited_string("19780714"), &Aetna)
- Patient("Leatha Wand", 1000, sex::MALE, from_undelimited_string("19841210"), &Aetna)
- Patient("Lazaro Estepp", 1000, sex::MALE, from_undelimited_string("19910110"), &Aetna)
- Patient("Laine Roessler", 1000, sex::MALE, from_undelimited_string("19790920"), &Aetna)
- Patient("Lulu Samora", 1000, sex::MALE, from_undelimited_string("19930819"), &Aetna)
- Patient("Ashlie Burriss", 1000, sex::MALE, from_undelimited_string("20061130"), &Aetna)
- Patient("Rhea Hypolite", 1000, sex::MALE, from_undelimited_string("20100706"), &Aetna)
- Patient("Emilee Moyers", 1000, sex::MALE, from_undelimited_string("20091207"), &Aetna)
- Patient("Hannelore Stockwell", 1000, sex::MALE, from_undelimited_string("19791020"), &Aetna)
- Patient("Barry Austell", 1000, sex::MALE, from_undelimited_string("19971024"), &Aetna)
- Patient("Juli Bailon", 1000, sex::MALE, from_undelimited_string("19730925"), &Aetna)
- Patient("Millard Doubleday", 1000, sex::MALE, from_undelimited_string("19780825"), &Aetna)
- Patient("Nadia Dula", 1000, sex::MALE, from_undelimited_string("19970506"), &Aetna)
- Patient("Manda Calaway", 1000, sex::MALE, from_undelimited_string("20060702"), &Aetna)
- Patient("Demarcus Hoch", 1000, sex::MALE, from_undelimited_string("20050918"), &Aetna)
- Patient("Margart Kinser", 1000, sex::MALE, from_undelimited_string("20131103"), &Aetna)
- Patient("Arnita Holzinger", 1000, sex::MALE, from_undelimited_string("20010121"), &Aetna)
- Patient("Catrice Eddy", 1000, sex::MALE, from_undelimited_string("20110201"), &Aetna)
- Patient("Somer Reeve", 1000, sex::MALE, from_undelimited_string("19720306"), &Aetna)
- Patient("Amelia Otterson", 1000, sex::MALE, from_undelimited_string("19990905"), &Aetna)
- Patient("Edgardo Tawney", 1000, sex::MALE, from_undelimited_string("20080718"), &Aetna)
- Patient("Tajuana Redden", 1000, sex::MALE, from_undelimited_string("19860804"), &Aetna)
- Patient("Ciera Rothchild", 1000, sex::MALE, from_undelimited_string("19770522"), &Aetna)
- Patient("Hyman Byrnes", 1000, sex::MALE, from_undelimited_string("20001202"), &Aetna)
- Patient("Erich Chappel", 1000, sex::MALE, from_undelimited_string("19860122"), &Aetna)
- Patient(
+patients.push_back(Patient("Marcella Wemple", 1000, sex::FEMALE, from_undelimited_string("20070519"), &Aetna));
+patients.push_back(Patient("Jackson Laseter", 1000, sex::MALE, from_undelimited_string("19960510"), &Aetna));
+patients.push_back(Patient("Johnette Sabatino", 1000, sex::FEMALE, from_undelimited_string("19780405"), &blueX));
+patients.push_back(Patient("Emelia Mcgirt", 1000, sex::FEMALE, from_undelimited_string("19810624"), &Aetna));
+patients.push_back(Patient("Rich Silvestri", 1000, sex::MALE, from_undelimited_string("20081202"), &Aetna));
+patients.push_back(Patient("Marisa Roma", 1000, sex::FEMALE, from_undelimited_string("19860525"), &blueX));
+patients.push_back(Patient("Katherin Dossey", 1000, sex::FEMALE, from_undelimited_string("19890112"), &Aetna));
+patients.push_back(Patient("Joleen Gillispie", 1000, sex::FEMALE, from_undelimited_string("19980809"), &Aetna));
+patients.push_back(Patient("Benita Carollo", 1000, sex::FEMALE, from_undelimited_string("19910606"), &blueX));
+patients.push_back(Patient("Russ Nickell", 1000, sex::MALE, from_undelimited_string("19781225"), &blueX));
+patients.push_back(Patient("Setsuko Kendig", 1000, sex::MALE, from_undelimited_string("19890306"), &Aetna));
+patients.push_back(Patient("Ilona Tannenbaum", 1000, sex::FEMALE, from_undelimited_string("20080925"), &blueX));
+patients.push_back(Patient("Kimi Rohman", 1000, sex::MALE, from_undelimited_string("19890429"), &blueX));
+patients.push_back(Patient("Sarai Schreffler", 1000, sex::FEMALE, from_undelimited_string("20090607"), &Aetna));
+patients.push_back(Patient("Vada Hawes", 1000, sex::FEMALE, from_undelimited_string("20031019"), &Aetna));
+patients.push_back(Patient("Bettie Riebel", 1000, sex::FEMALE, from_undelimited_string("19910531"), &blueX));
+patients.push_back(Patient("Hollie Vankirk", 1000, sex::FEMALE, from_undelimited_string("20010607"), &Aetna));
+patients.push_back(Patient("Joellen Bugg", 1000, sex::FEMALE, from_undelimited_string("19940517"), &Aetna));
+patients.push_back(Patient("Roseann Bittinger", 1000, sex::FEMALE, from_undelimited_string("19780527"), &Aetna));
+patients.push_back(Patient("Darlene Hick", 1000, sex::FEMALE, from_undelimited_string("20140423"), &blueX));
+patients.push_back(Patient("Eloise Traver", 1000, sex::FEMALE, from_undelimited_string("19950725"), &blueX));
+patients.push_back(Patient("Dortha Labounty", 1000, sex::FEMALE, from_undelimited_string("19950430"), &blueX));
+patients.push_back(Patient("Lakendra Truelove", 1000, sex::FEMALE, from_undelimited_string("19850209"), &Aetna));
+patients.push_back(Patient("Tonja Judah", 1000, sex::FEMALE, from_undelimited_string("19850413"), &blueX));
+patients.push_back(Patient("Melida Prosser", 1000, sex::FEMALE, from_undelimited_string("19950223"), &Aetna));
+patients.push_back(Patient("Darren Garlitz", 1000, sex::MALE, from_undelimited_string("19780714"), &Aetna));
+patients.push_back(Patient("Leatha Wand", 1000, sex::FEMALE, from_undelimited_string("19841210"), &blueX));
+patients.push_back(Patient("Lazaro Estepp", 1000, sex::MALE, from_undelimited_string("19910110"), &Aetna));
+patients.push_back(Patient("Laine Roessler", 1000, sex::FEMALE, from_undelimited_string("19790920"), &blueX));
+patients.push_back(Patient("Lulu Samora", 1000, sex::FEMALE, from_undelimited_string("19930819"), &Aetna));
+patients.push_back(Patient("Ashlie Burriss", 1000, sex::FEMALE, from_undelimited_string("20061130"), &blueX));
+patients.push_back(Patient("Rhea Hypolite", 1000, sex::FEMALE, from_undelimited_string("20100706"), &blueX));
+patients.push_back(Patient("Emilee Moyers", 1000, sex::FEMALE, from_undelimited_string("20091207"), &Aetna));
+patients.push_back(Patient("Hannelore Stockwell", 1000, sex::FEMALE, from_undelimited_string("19791020"), &blueX));
+patients.push_back(Patient("Barry Austell", 1000, sex::MALE, from_undelimited_string("19971024"), &Aetna));
+patients.push_back(Patient("Juli Bailon", 1000, sex::FEMALE, from_undelimited_string("19730925"), &blueX));
+patients.push_back(Patient("Millard Doubleday", 1000, sex::MALE, from_undelimited_string("19780825"), &Aetna));
+patients.push_back(Patient("Nadia Dula", 1000, sex::FEMALE, from_undelimited_string("19970506"), &blueX));
+patients.push_back(Patient("Manda Calaway", 1000, sex::FEMALE, from_undelimited_string("20060702"), &Aetna));
+patients.push_back(Patient("Demarcus Hoch", 1000, sex::MALE, from_undelimited_string("20050918"), &Aetna));
+patients.push_back(Patient("Margart Kinser", 1000, sex::FEMALE, from_undelimited_string("20131103"), &blueX));
+patients.push_back(Patient("Arnita Holzinger", 1000, sex::FEMALE, from_undelimited_string("20010121"), &blueX));
+patients.push_back(Patient("Catrice Eddy", 1000, sex::FEMALE, from_undelimited_string("20110201"), &Aetna));
+patients.push_back(Patient("Somer Reeve", 1000, sex::MALE, from_undelimited_string("19720306"), &blueX));
+patients.push_back(Patient("Amelia Otterson", 1000, sex::FEMALE, from_undelimited_string("19990905"), &Aetna));
+patients.push_back(Patient("Edgardo Tawney", 1000, sex::MALE, from_undelimited_string("20080718"), &blueX));
+patients.push_back(Patient("Tajuana Redden", 1000, sex::FEMALE, from_undelimited_string("19860804"), &Aetna));
+patients.push_back(Patient("Ciera Rothchild", 1000, sex::FEMALE, from_undelimited_string("19770522"), &blueX));
+patients.push_back(Patient("Hyman Byrnes", 1000, sex::MALE, from_undelimited_string("20001202"), &Aetna));
+patients.push_back(Patient("Erich Chappel", 1000, sex::MALE, from_undelimited_string("19860122"), &blueX);

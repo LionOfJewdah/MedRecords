@@ -22,6 +22,7 @@ public:
     // virtual void printInfo() const {
     //     std::cout << "Person: " << mName << "\tID: " << mID;
     // }
+    Person(Person&&) = default; // don't be stupid
 
 protected:
     std::string mName;

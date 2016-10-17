@@ -11,5 +11,16 @@ Patient::Patient(std::string name, int ID, sex gender, date_type dob = day_clock
 };
 
 Patient::~Patient(){
-   delete whereMyRecordsAt;
+    if (whereMyRecordsAt) delete whereMyRecordsAt;
+}
+
+Patient::Patient(Patient&& other) : Person(other.mName, other.mID) { // my second move constructor
+    mGender = other.mGender;
+    mDate_of_birth = other.mDate_of_birth;
+    location = other.location;
+    other.location = 0;
+    coverage = other.coverage;
+    other.coverage = 0;
+    whereMyRecordsAt = other.whereMyRecordsAt;
+    other.whereMyRecordsAt = 0;
 }
